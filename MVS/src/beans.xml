@@ -1,0 +1,45 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+   
+   
+   
+	<bean id="dataSource" 
+      class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name = "driverClassName" value = "com.mysql.jdbc.Driver"/>
+      <property name = "url" value = "jdbc:mysql://localhost:3306/mvs"/>
+      <property name = "username" value = "zhang"/>
+      <property name = "password" value = "zhang"/>
+   </bean>
+
+	<bean id = "jdbcTemplate"
+		class = "org.springframework.jdbc.core.JdbcTemplate" >
+	<property name="dataSource" ref="dataSource"></property>	
+	</bean>
+	
+   <!-- Definition for JDBCTemplate bean -->
+    
+    <bean id = "maskDao" class = "dao.MaskDao">
+      <property name = "jdbcTemplate" ref = "jdbcTemplate" >   </property>
+   </bean> 
+   
+   <bean id = "userDao" class = "dao.UserDao">
+      <property name = "jdbcTemplate" ref = "jdbcTemplate" >   </property>
+   </bean>   
+   
+   <bean id = "waferDao" class = "dao.WaferDao">
+      <property name = "jdbcTemplate" ref = "jdbcTemplate" >   </property>
+   </bean> 
+   
+   <bean id = "productDao" class = "dao.ProductDao">
+      <property name = "jdbcTemplate" ref = "jdbcTemplate" >   </property>
+   </bean> 
+   
+   <bean id = "orderDao" class = "dao.OrderDao">
+      <property name = "jdbcTemplate" ref = "jdbcTemplate" >   </property>
+   </bean> 
+   
+</beans>
